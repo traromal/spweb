@@ -55,14 +55,8 @@
         }
         
         .logo img {
-            max-height: 50px;  /* Adjust this value to fit your logo size */
+            max-height: 50px;
             width: auto;
-        }
-        
-        @media (max-width: 768px) {
-            .logo img {
-                max-height: 40px;  /* Slightly smaller logo on mobile */
-            }
         }
 
         nav ul {
@@ -174,6 +168,16 @@
             color: var(--primary-color);
         }
 
+        .service-card p, .charge-card p {
+            text-align: left;
+        }
+
+        .service-card p br, .charge-card p br {
+            display: block;
+            content: "";
+            margin-top: 10px;
+        }
+
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -184,14 +188,14 @@
             position: relative;
             overflow: hidden;
             border-radius: 10px;
-            aspect-ratio: 1 / 1;  /* This ensures a square aspect ratio */
+            aspect-ratio: 1 / 1;
             background-color: var(--secondary-color);
         }
         
         .portfolio-item img {
             width: 100%;
             height: 100%;
-            object-fit: cover;  /* This will cover the entire area, cropping if necessary */
+            object-fit: cover;
             transition: transform 0.3s ease;
         }
         
@@ -264,6 +268,21 @@
             background-color: #3a0b3e;
         }
 
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .services-grid, .charges-grid {
+                width: 100%;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .service-card, .charge-card {
+                width: 100%;
+            }
+        }
+
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: row;
@@ -276,33 +295,62 @@
             }
 
             nav {
-                position: absolute;
-                top: 100%;
-                left: 0;
+                position: fixed;
+                top: 80px;
+                left: -100%;
                 width: 100%;
-                background-color: rgba(255, 255, 255, 0.9);
-                display: none;
+                height: calc(100% - 80px);
+                background-color: rgba(255, 255, 255, 0.95);
+                transition: left 0.3s ease;
+                overflow-y: auto;
             }
 
             nav.active {
-                display: block;
+                left: 0;
             }
 
             nav ul {
                 flex-direction: column;
                 align-items: center;
+                padding: 20px 0;
             }
 
             nav ul li {
-                margin: 10px 0;
+                margin: 15px 0;
             }
 
             .hero h1 {
-                font-size: 36px;
+                font-size: 32px;
             }
 
             .hero p {
-                font-size: 18px;
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .service-card, .charge-card {
+                padding: 20px;
             }
         }
     </style>
@@ -354,81 +402,61 @@
                 <div class="service-card">
                     <h3>Design Services</h3>
                     <p>
-                        1. Conceptual Design:
-                        <br>
-                        • Initial design concepts and sketches for projects.
-                        • Feasibility studies and preliminary design proposals.
-                        2. Detailed Design:
-                        <br>
-                        • Full-scale, detailed design plans for electrical systems, architectural layouts, and other engineering projects.
-                        • Design modifications and optimizations based on client feedback.
-                        <br>
-                        3. System Design:
-                        <br>
-                        • Electrical system designs, including power distribution and control systems.
-                        • Integration of PLC/SCADA systems and other advanced technologies.
-                        <br>
-                        4. 3D Modeling and Visualization:
-                        <br>
-                        • Creating 3D models of design concepts for better visualization.
-                        • Virtual walkthroughs and simulations to help clients understand the final product.</p>
+                        1. Conceptual Design:<br>
+                        • Initial design concepts and sketches for projects.<br>
+                        • Feasibility studies and preliminary design proposals.<br>
+                        2. Detailed Design:<br>
+                        • Full-scale, detailed design plans for electrical systems, architectural layouts, and other engineering projects.<br>
+                        • Design modifications and optimizations based on client feedback.<br>
+                        3. System Design:<br>
+                        • Electrical system designs, including power distribution and control systems.<br>
+                        • Integration of PLC/SCADA systems and other advanced technologies.<br>
+                        4. 3D Modeling and Visualization:<br>
+                        • Creating 3D models of design concepts for better visualization.<br>
+                        • Virtual walkthroughs and simulations to help clients understand the final product.
+                    </p>
                 </div>
                 <div class="service-card">
                     <h3>Drafting Services</h3>
                     <p>
-                        <br>
-                        1. Technical Drafting:
-                        <br>
-                        • Creation of technical drawings for construction, manufacturing, and assembly.
-                        • Drafting of electrical schematics, wiring diagrams, and layout plans.
-                        <br>
-                        2. As-Built Drawings:
-                        <br>
-                        • Accurate representation of completed projects reflecting changes made during construction.
-                        • Documentation for maintenance and future modifications.
-                        <br>
-                        3. Compliance and Standards:
-                        <br>
-                        • Ensuring all drawings meet industry standards and regulatory requirements.
-                        • Preparing documentation for permits and approvals.
-                        <br>
-                        4. Coordination and Integration:
-                        <br>
-                        • Coordinating with other engineering disciplines (MEP, civil, structural) to ensure design integration.
-                        • Managing design changes and updates across different project phases.</p>
+                        1. Technical Drafting:<br>
+                        • Creation of technical drawings for construction, manufacturing, and assembly.<br>
+                        • Drafting of electrical schematics, wiring diagrams, and layout plans.<br>
+                        2. As-Built Drawings:<br>
+                        • Accurate representation of completed projects reflecting changes made during construction.<br>
+                        • Documentation for maintenance and future modifications.<br>
+                        3. Compliance and Standards:<br>
+                        • Ensuring all drawings meet industry standards and regulatory requirements.<br>
+                        • Preparing documentation for permits and approvals.<br>
+                        4. Coordination and Integration:<br>
+                        • Coordinating with other engineering disciplines (MEP, civil, structural) to ensure design integration.<br>
+                        • Managing design changes and updates across different project phases.
+                    </p>
                 </div>
                 <div class="service-card">
                     <h3>Consulting Services</h3>
                     <p>
-                        <br>
-                        1. Design Review and Analysis:
-                        <br>
-                        • Reviewing existing designs for improvements and compliance.
-                        • Conducting value engineering and cost analysis.
-                        <br>
-                        2. Project Management Support:
-                        <br>
-                        • Providing drafting and design support for project management tasks.
-                        • Assisting with project planning and execution strategies.
-                        <br>
-                        3. Technical Advisory:
-                        <br>
-                        • Offering expert advice on design and drafting best practices.
-                        • Recommending technological solutions and innovations.</p>
+                        1. Design Review and Analysis:<br>
+                        • Reviewing existing designs for improvements and compliance.<br>
+                        • Conducting value engineering and cost analysis.<br>
+                        2. Project Management Support:<br>
+                        • Providing drafting and design support for project management tasks.<br>
+                        • Assisting with project planning and execution strategies.<br>
+                        3. Technical Advisory:<br>
+                        • Offering expert advice on design and drafting best practices.<br>
+                        • Recommending technological solutions and innovations.
+                    </p>
                 </div>
                 <div class="service-card">
                     <h3>Additional Solution</h3>
                     <p>
-                        <br>
-                        1. Training and Support:
-                        <br>
-                        • Providing training for clients on using design and drafting software.
-                        • Offering ongoing support and troubleshooting for design-related issues.
-                        <br>
-                        2. Documentation and Reporting:
-                        <br>
-                        • Preparing detailed reports and documentation related to design and drafting projects.
-                        • Creating user manuals and operational guides for completed systems.</p>
+                        1. Training and Support:<br>
+                        • Providing training for clients on using design and drafting software.<br>
+                        • Offering ongoing support and troubleshooting for design-related issues.<br>
+                        2. Documentation and Reporting:<br>
+                        • Preparing detailed reports and documentation related to design and drafting projects.<br>
+                        • Creating user manuals and operational guides for completed systems.
+                    </p>
                 </div>
             </div>
         </div>
@@ -441,110 +469,61 @@
                 <div class="charge-card">
                     <h3>Design Services:</h3>
                     <p>
-                        <br>
-                        1. Conceptual Design:
-                        <br>
-                        • Hourly Rate:
-                        $100-$150 per hour
-                        • Fixed Fee:
-                        $1,000-$3,000, depending on project scope
-                        <br>
-                        2. Detailed Design:
-                        <br>
-                        • Hourly Rate:
-                        $120-$180 per hour
-                        • Fixed Fee:
-                        $2,000-$10,000, based on project size and detail
-                        <br>
-                        3. System Design:
-                        <br>
-                        • Hourly Rate:
-                        $130-$200 per hour
-                        • Fixed Fee:
-                        $3,000-$15,000, depending on system complexity
-                        0
-                        <br>
-                        4. 3D Modeling and Visualization:
-                        <br>
-                        • Hourly Rate:
-                        $100-$160 per hour
-                        • Fixed Fee:
-                        $1,500-$6,000, depending on the level of detail and rendering requirements</p>
+                        1. Conceptual Design:<br>
+                        • Hourly Rate: $100-$150 per hour<br>
+                        • Fixed Fee: $1,000-$3,000, depending on project scope<br>
+                        2. Detailed Design:<br>
+                        • Hourly Rate: $120-$180 per hour<br>
+                        • Fixed Fee: $2,000-$10,000, based on project size and detail<br>
+                        3. System Design:<br>
+                        • Hourly Rate: $130-$200 per hour<br>
+                        • Fixed Fee: $3,000-$15,000, depending on system complexity<br>
+                        4. 3D Modeling and Visualization:<br>
+                        • Hourly Rate: $100-$160 per hour<br>
+                        • Fixed Fee: $1,500-$6,000, depending on the level of detail and rendering requirements
+                    </p>
                 </div>
                 <div class="charge-card">
                     <h3>Drafting Services:</h3>
                     <p>
-                        <br>
-                        1. Technical Drafting:
-                        <br>
-                        ⚫ Hourly Rate:
-                        $90-$140 per hour
-                        • Fixed Fee:
-                        $1,000-$5,000, depending on the number of drawings and complexity
-                        <br>
-                        2 As-Built Drawings:
-                        <br>
-                        • Hourly Rate:
-                        $100-$150 per hour
-                        • Fixed Fee:
-                        $1,500-$4,000, depending on project size
-                        <br>
-                        3 Compliance and Standards:
-                        <br>
-                        • Hourly Rate:
-                        $100-$150 per hour
-                        • Fixed Fee:
-                        $1,000-$3,000, depending on the amount of documentation and regulatory requirements
-                        <br>
-                        4 Coordination and Integration:
-                        <br>
-                        ⚫ Hourly Rate:
-                        $120-$180 per hour
-                        • Fixed Fee:
-                        $2,000-$8,000, depending on the project's scale and complexity</p>
+                        1. Technical Drafting:<br>
+                        • Hourly Rate: $90-$140 per hour<br>
+                        • Fixed Fee: $1,000-$5,000, depending on the number of drawings and complexity<br>
+                        2. As-Built Drawings:<br>
+                        • Hourly Rate: $100-$150 per hour<br>
+                        • Fixed Fee: $1,500-$4,000, depending on project size<br>
+                        3. Compliance and Standards:<br>
+                        • Hourly Rate: $100-$150 per hour<br>
+                        • Fixed Fee: $1,000-$3,000, depending on the amount of documentation and regulatory requirements<br>
+                        4. Coordination and Integration:<br>
+                        • Hourly Rate: $120-$180 per hour<br>
+                        • Fixed Fee: $2,000-$8,000, depending on the project's scale and complexity
+                    </p>
                 </div>
                 <div class="charge-card">
                     <h3>Consulting Services</h3>
                     <p>
-                        <br>
-                        1. Design Review and Analysis:
-                        <br>
-                        • Hourly Rate:
-                        $120-$200 per hour
-                        • Fixed Fee:
-                        $2,000-$5,000, depending on the depth of review
-                        <br>
-                        2 Project Management Support:
-                        <br>
-                        • Hourly Rate:
-                        $130-$200 per hour
-                        • Fixed Fee:
-                        $3,000-$10,000, depending on the level of support
-                        <br>
-                        3. Technical Advisory:
-                        <br>
-                        • Hourly Rate:
-                        $150-$220 per hour
-                        • Fixed Fee:
-                        $2,000-$7,000, based on the extent of advice and consultation</p>
+                        1. Design Review and Analysis:<br>
+                        • Hourly Rate: $120-$200 per hour<br>
+                        • Fixed Fee: $2,000-$5,000, depending on the depth of review<br>
+                        2. Project Management Support:<br>
+                        • Hourly Rate: $130-$200 per hour<br>
+                        • Fixed Fee: $3,000-$10,000, depending on the level of support<br>
+                        3. Technical Advisory:<br>
+                        • Hourly Rate: $150-$220 per hour<br>
+                        • Fixed Fee: $2,000-$7,000, based on the extent of advice and consultation
+                    </p>
                 </div>
                 <div class="charge-card">
                     <h3>Additional Solutions</h3>
                     <p>
-                        <br>
-                        1. Training and Support:
-                        <br>
-                        • Hourly Rate:
-                        $100-$150 per hour
-                        • Fixed Fee:
-                        $1,000-$4,000, depending on the training program length
-                        <br>
-                        2. Documentation and Reporting:
-                        <br>
-                        • Hourly Rate:
-                        $90-$140 per hour
-                        • Fixed Fee:
-                        $1,000-$3,000, based on the complexity of the documentation</p>
+                        1. Training and Support:<br>
+                        • Hourly Rate: $100-$150 per hour<br>
+                        • Fixed Fee: $1,000-$4,000, depending on the training program length<br>
+                        2. Documentation and Reporting:<br>
+                        • Hourly Rate: $90-$140 per hour<br>
+                        • Fixed Fee: $1,000-$3,000, based on the complexity of the documentation
+                    </p>
                 </div>
             </div>
         </div>
@@ -606,20 +585,28 @@
     <script>
         const menuToggle = document.getElementById('menuToggle');
         const nav = document.getElementById('nav');
+        const body = document.body;
 
         menuToggle.addEventListener('click', () => {
             nav.classList.toggle('active');
+            body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
         });
 
         // Close menu when a link is clicked
         document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('click', () => {
                 nav.classList.remove('active');
+                body.style.overflow = '';
             });
         });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
+                nav.classList.remove('active');
+                body.style.overflow = '';
+            }
+        });
     </script>
-
-
-
 </body>
 </html>
