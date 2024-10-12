@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G3 Design and Drafting Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a0e4e;
+            --secondary-color: #f0e6f2;
+            --accent-color: #5dbb63;
+            --text-color: #333;
+            --background-color: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            max-height: 50px;  /* Adjust this value to fit your logo size */
+            width: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .logo img {
+                max-height: 40px;  /* Slightly smaller logo on mobile */
+            }
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background-color: var(--primary-color);
+            margin: 2px 0;
+            transition: 0.4s;
+        }
+
+        .hero {
+            height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 24px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
+
+        .services-grid, .charges-grid {
+            display: grid;
+            width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card, .charge-card {
+            background-color: var(--secondary-color);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            width: 300px;
+        }
+
+        .service-card:hover, .charge-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card h3, .charge-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            aspect-ratio: 1 / 1;  /* This ensures a square aspect ratio */
+            background-color: var(--secondary-color);
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;  /* This will cover the entire area, cropping if necessary */
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(74, 14, 78, 0.8);
+            overflow: hidden;
+            width: 100%;
+            height: 0;
+            transition: .5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            height: 100%;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay h3 {
+            color: white;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-group textarea {
+            height: 150px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #3a0b3e;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.9);
+                display: none;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="g3.jpg" alt="G3 Solutions Logo">
+                </div>
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#charges">Service Charges</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>G3 Design and Drafting Solutions</h1>
+            <p>Innovative designs, global perspective, groundbreaking solutions</p>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <p>G3 Design and Drafting Solutions is a leading provider of innovative design and drafting services. We combine expertise, creativity, and cutting-edge technology to deliver exceptional results for our clients worldwide.</p>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Design Services</h3>
+                    <p>
+                        1. Conceptual Design:
+                        <br>
+                        • Initial design concepts and sketches for projects.
+                        • Feasibility studies and preliminary design proposals.
+                        2. Detailed Design:
+                        <br>
+                        • Full-scale, detailed design plans for electrical systems, architectural layouts, and other engineering projects.
+                        • Design modifications and optimizations based on client feedback.
+                        <br>
+                        3. System Design:
+                        <br>
+                        • Electrical system designs, including power distribution and control systems.
+                        • Integration of PLC/SCADA systems and other advanced technologies.
+                        <br>
+                        4. 3D Modeling and Visualization:
+                        <br>
+                        • Creating 3D models of design concepts for better visualization.
+                        • Virtual walkthroughs and simulations to help clients understand the final product.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Drafting Services</h3>
+                    <p>
+                        <br>
+                        1. Technical Drafting:
+                        <br>
+                        • Creation of technical drawings for construction, manufacturing, and assembly.
+                        • Drafting of electrical schematics, wiring diagrams, and layout plans.
+                        <br>
+                        2. As-Built Drawings:
+                        <br>
+                        • Accurate representation of completed projects reflecting changes made during construction.
+                        • Documentation for maintenance and future modifications.
+                        <br>
+                        3. Compliance and Standards:
+                        <br>
+                        • Ensuring all drawings meet industry standards and regulatory requirements.
+                        • Preparing documentation for permits and approvals.
+                        <br>
+                        4. Coordination and Integration:
+                        <br>
+                        • Coordinating with other engineering disciplines (MEP, civil, structural) to ensure design integration.
+                        • Managing design changes and updates across different project phases.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Consulting Services</h3>
+                    <p>
+                        <br>
+                        1. Design Review and Analysis:
+                        <br>
+                        • Reviewing existing designs for improvements and compliance.
+                        • Conducting value engineering and cost analysis.
+                        <br>
+                        2. Project Management Support:
+                        <br>
+                        • Providing drafting and design support for project management tasks.
+                        • Assisting with project planning and execution strategies.
+                        <br>
+                        3. Technical Advisory:
+                        <br>
+                        • Offering expert advice on design and drafting best practices.
+                        • Recommending technological solutions and innovations.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Additional Solution</h3>
+                    <p>
+                        <br>
+                        1. Training and Support:
+                        <br>
+                        • Providing training for clients on using design and drafting software.
+                        • Offering ongoing support and troubleshooting for design-related issues.
+                        <br>
+                        2. Documentation and Reporting:
+                        <br>
+                        • Preparing detailed reports and documentation related to design and drafting projects.
+                        • Creating user manuals and operational guides for completed systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="charges" class="section">
+        <div class="container">
+            <h2 class="section-title">Service Charges</h2>
+            <div class="charges-grid">
+                <div class="charge-card">
+                    <h3>Design Services:</h3>
+                    <p>
+                        <br>
+                        1. Conceptual Design:
+                        <br>
+                        • Hourly Rate:
+                        $100-$150 per hour
+                        • Fixed Fee:
+                        $1,000-$3,000, depending on project scope
+                        <br>
+                        2. Detailed Design:
+                        <br>
+                        • Hourly Rate:
+                        $120-$180 per hour
+                        • Fixed Fee:
+                        $2,000-$10,000, based on project size and detail
+                        <br>
+                        3. System Design:
+                        <br>
+                        • Hourly Rate:
+                        $130-$200 per hour
+                        • Fixed Fee:
+                        $3,000-$15,000, depending on system complexity
+                        0
+                        <br>
+                        4. 3D Modeling and Visualization:
+                        <br>
+                        • Hourly Rate:
+                        $100-$160 per hour
+                        • Fixed Fee:
+                        $1,500-$6,000, depending on the level of detail and rendering requirements</p>
+                </div>
+                <div class="charge-card">
+                    <h3>Drafting Services:</h3>
+                    <p>
+                        <br>
+                        1. Technical Drafting:
+                        <br>
+                        ⚫ Hourly Rate:
+                        $90-$140 per hour
+                        • Fixed Fee:
+                        $1,000-$5,000, depending on the number of drawings and complexity
+                        <br>
+                        2 As-Built Drawings:
+                        <br>
+                        • Hourly Rate:
+                        $100-$150 per hour
+                        • Fixed Fee:
+                        $1,500-$4,000, depending on project size
+                        <br>
+                        3 Compliance and Standards:
+                        <br>
+                        • Hourly Rate:
+                        $100-$150 per hour
+                        • Fixed Fee:
+                        $1,000-$3,000, depending on the amount of documentation and regulatory requirements
+                        <br>
+                        4 Coordination and Integration:
+                        <br>
+                        ⚫ Hourly Rate:
+                        $120-$180 per hour
+                        • Fixed Fee:
+                        $2,000-$8,000, depending on the project's scale and complexity</p>
+                </div>
+                <div class="charge-card">
+                    <h3>Consulting Services</h3>
+                    <p>
+                        <br>
+                        1. Design Review and Analysis:
+                        <br>
+                        • Hourly Rate:
+                        $120-$200 per hour
+                        • Fixed Fee:
+                        $2,000-$5,000, depending on the depth of review
+                        <br>
+                        2 Project Management Support:
+                        <br>
+                        • Hourly Rate:
+                        $130-$200 per hour
+                        • Fixed Fee:
+                        $3,000-$10,000, depending on the level of support
+                        <br>
+                        3. Technical Advisory:
+                        <br>
+                        • Hourly Rate:
+                        $150-$220 per hour
+                        • Fixed Fee:
+                        $2,000-$7,000, based on the extent of advice and consultation</p>
+                </div>
+                <div class="charge-card">
+                    <h3>Additional Solutions</h3>
+                    <p>
+                        <br>
+                        1. Training and Support:
+                        <br>
+                        • Hourly Rate:
+                        $100-$150 per hour
+                        • Fixed Fee:
+                        $1,000-$4,000, depending on the training program length
+                        <br>
+                        2. Documentation and Reporting:
+                        <br>
+                        • Hourly Rate:
+                        $90-$140 per hour
+                        • Fixed Fee:
+                        $1,000-$3,000, based on the complexity of the documentation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Portfolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="4.jpg" alt="Project 1">
+                    <div class="portfolio-overlay">
+                        <h3>Project 1</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="3.jpg" alt="Project 2">
+                    <div class="portfolio-overlay">
+                        <h3>Project 2</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="2.jpg" alt="Project 3">
+                    <div class="portfolio-overlay">
+                        <h3>Project 3</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="1.jpg" alt="Project 4">
+                    <div class="portfolio-overlay">
+                        <h3>Project 4</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('nav');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+    </script>
+
+
+
+</body>
+</html>
